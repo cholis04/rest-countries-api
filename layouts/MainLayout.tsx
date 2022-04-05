@@ -1,14 +1,16 @@
-import styled from 'styled-components';
+import Head from 'next/head';
+import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 
-const HeaderDiv = styled.header`
-  background-color: red;
-`;
 const MainLayout: React.FC = ({ children }) => {
   const component = (
     <>
-      <HeaderDiv>Header</HeaderDiv>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Navbar />
       {children}
-      <footer>Footer</footer>
+      <Footer />
     </>
   );
 

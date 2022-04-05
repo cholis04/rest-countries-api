@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Nunito Sans', sans-serif;
     background-color:${(props) => props.theme.backgroundColor};
     transition:all .2s ease-in-out;
+    min-width:${(props) => props.theme.minWidth};
   }
   img {
     display: block;
