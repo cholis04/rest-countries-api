@@ -3,17 +3,18 @@ import styled from 'styled-components';
 import { BsMoon, BsSunFill } from 'react-icons/bs';
 
 import { Mode } from '../../context/ModeContext';
+import { Wrapper } from '../../styles/sharedComponent';
 
-const NavBar = styled.nav`
+const NavHeader = styled.header`
   background-color: ${(props) => props.theme.elementColor};
   box-shadow: ${(props) => props.theme.smallShadow};
+  transition: all 0.2s ease-in-out;
 `;
 
 const WrapperNav = styled.div`
-  margin: 0 auto;
-  padding: 1.4em;
-  width: 100%;
-  max-width: ${(props) => props.theme.maxWidth};
+  /* include */
+  ${Wrapper}
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,7 +39,7 @@ const ToggleMode = styled.button`
   background: none;
   color: ${(props) => props.theme.textColor};
   font-size: 0.9em;
-  font-weight: 500;
+  font-weight: 700;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -66,10 +67,10 @@ const Navbar = () => {
   const mode = useContext(Mode);
 
   return (
-    <NavBar>
+    <NavHeader>
       <WrapperNav>
         <TitleWeb>Where in the world?</TitleWeb>
-        <ToggleMode onClick={mode?.toggleMode}>
+        <ToggleMode onClick={mode?.toggleMode} title="Toggle Dark/Light Mode">
           {mode?.isDarkMode ? (
             <>
               <BsSunFill />
@@ -83,7 +84,7 @@ const Navbar = () => {
           )}
         </ToggleMode>
       </WrapperNav>
-    </NavBar>
+    </NavHeader>
   );
 };
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 // Styles
 const FooterStyled = styled.footer`
-  padding: 4rem 0;
+  padding: 2rem 0;
   margin: 0 auto;
   width: 100%;
   max-width: ${(props) => props.theme.maxWidth};
@@ -17,6 +17,7 @@ const AttributionDiv = styled.div`
 
 const LinkAttribute = styled.a`
   text-decoration: underline;
+  font-weight: 600;
   color: ${(props) => props.theme.textColor};
 `;
 

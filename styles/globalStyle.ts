@@ -26,4 +26,8 @@ export const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
+
+  button,input, select {
+    font-family: 'Nunito Sans', sans-serif;
+  }
 `;
