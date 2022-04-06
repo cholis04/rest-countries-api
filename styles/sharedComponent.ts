@@ -32,6 +32,7 @@ export const FilterSection = styled.section`
   /* Desktop */
   @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
     & {
+      margin-bottom: 2.8rem;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;

@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
+import CountryList from '../components/CountryList';
 import FilterForm from '../components/FilterForm';
 import SearchForm from '../components/SearchForm';
 import { FilterSection, MainBox } from '../styles/sharedComponent';
@@ -18,7 +19,7 @@ const Home: NextPage = () => {
           <SearchForm />
           <FilterForm />
         </FilterSection>
-        <section aria-label="List of Countries">Country List Component</section>
+        <CountryList />
       </MainBox>
     </>
   );

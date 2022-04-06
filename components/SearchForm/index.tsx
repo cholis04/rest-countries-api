@@ -4,32 +4,39 @@ import styled from 'styled-components';
 
 // Styled
 const FormGroupSearch = styled.form`
-  padding-left: 1.8em;
+  padding-left: 1.4em;
   width: 100%;
   max-width: 480px;
   background-color: ${(props) => props.theme.elementColor};
   border-radius: 5px;
   box-shadow: ${(props) => props.theme.smallShadow};
   transition: all 0.2s ease-in-out;
+
+  /* Desktop */
+  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+    & {
+      padding-left: 1.8em;
+    }
+  }
 `;
 
 const InputGroup = styled.div`
   display: flex;
   align-items: center;
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: ${(props) => props.theme.textColor};
 
   /* Desktop */
   @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
     & {
-      font-size: 1em;
+      font-size: 0.9em;
     }
   }
 `;
 
 const InputSearch = styled.input`
   width: 100%;
-  padding: 1.2em 1.8em;
+  padding: 1em 1.8em;
   background: none;
   font-weight: 500;
   border: none;
