@@ -4,21 +4,13 @@ import styled from 'styled-components';
 
 // Styled
 const FormGroupSearch = styled.form`
-  margin-bottom: 1.2rem;
   padding-left: 1.8em;
   width: 100%;
   max-width: 480px;
   background-color: ${(props) => props.theme.elementColor};
   border-radius: 5px;
   box-shadow: ${(props) => props.theme.smallShadow};
-  transition: background 0.2s ease-in-out;
-
-  /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
-    & {
-      margin-bottom: 0;
-    }
-  }
+  transition: all 0.2s ease-in-out;
 `;
 
 const InputGroup = styled.div`
