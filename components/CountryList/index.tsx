@@ -1,9 +1,28 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
 // styled
+const ErrorLoadingSection = styled.section`
+  width: 100%;
+  min-height: 45vh;
+  display: grid;
+  place-items: center;
+`;
+const ErrorLoadingText = styled.p`
+  text-align: center;
+  font-size: 14px;
+  color: ${(props) => props.theme.textPlaceHolder};
+
+  /* Desktop */
+  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+    & {
+      font-size: 16px;
+    }
+  }
+`;
+
 const CountryListSection = styled.section`
   width: 100%;
   display: grid;
@@ -41,7 +60,7 @@ const TextInfo = styled.p`
 `;
 
 const TextKey = styled.b`
-  font-weight: 600;
+  font-weight: 700;
 `;
 
 const CountryName = styled.a`
@@ -56,13 +75,37 @@ const CountryName = styled.a`
     text-decoration: underline;
 
     &::after {
-      content: ' ↗';
+      content: ' →';
     }
   }
 `;
 
 // Component
 const CountryList = () => {
+  const [error, setError] = useState<null | 'Fail Load' | 'Not Found'>(null);
+  const [loading, setLoading] = useState(false);
+
+  if (loading)
+    return (
+      <ErrorLoadingSection aria-label="Loading Countries..">
+        <ErrorLoadingText>Loading ... </ErrorLoadingText>
+      </ErrorLoadingSection>
+    );
+
+  if (error === 'Fail Load')
+    return (
+      <ErrorLoadingSection role="alert" aria-label="Failed to load Countries">
+        <ErrorLoadingText>Something went wrong</ErrorLoadingText>
+      </ErrorLoadingSection>
+    );
+
+  if (error === 'Not Found')
+    return (
+      <ErrorLoadingSection role="alert" aria-label="Country not found">
+        <ErrorLoadingText>Country Not Found</ErrorLoadingText>
+      </ErrorLoadingSection>
+    );
+
   return (
     <CountryListSection aria-label="List of Countries">
       <CountryCard>
@@ -72,7 +115,175 @@ const CountryList = () => {
           title="Flag"
         />
         <CountryInfo>
-          <Link href="#" passHref>
+          <Link href="./country" passHref>
+            <CountryName>Åland Islands</CountryName>
+          </Link>
+          <TextInfo>
+            <TextKey>Population : </TextKey>28.875
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Region : </TextKey>Europe
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Capital : </TextKey>Mariehamn
+          </TextInfo>
+        </CountryInfo>
+      </CountryCard>
+      <CountryCard>
+        <FlagImage
+          src="https://flagcdn.com/w320/ax.png"
+          alt="Flag"
+          title="Flag"
+        />
+        <CountryInfo>
+          <Link href="./country" passHref>
+            <CountryName>Åland Islands</CountryName>
+          </Link>
+          <TextInfo>
+            <TextKey>Population : </TextKey>28.875
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Region : </TextKey>Europe
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Capital : </TextKey>Mariehamn
+          </TextInfo>
+        </CountryInfo>
+      </CountryCard>
+      <CountryCard>
+        <FlagImage
+          src="https://flagcdn.com/w320/ax.png"
+          alt="Flag"
+          title="Flag"
+        />
+        <CountryInfo>
+          <Link href="./country" passHref>
+            <CountryName>Åland Islands</CountryName>
+          </Link>
+          <TextInfo>
+            <TextKey>Population : </TextKey>28.875
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Region : </TextKey>Europe
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Capital : </TextKey>Mariehamn
+          </TextInfo>
+        </CountryInfo>
+      </CountryCard>
+      <CountryCard>
+        <FlagImage
+          src="https://flagcdn.com/w320/ax.png"
+          alt="Flag"
+          title="Flag"
+        />
+        <CountryInfo>
+          <Link href="./country" passHref>
+            <CountryName>Åland Islands</CountryName>
+          </Link>
+          <TextInfo>
+            <TextKey>Population : </TextKey>28.875
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Region : </TextKey>Europe
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Capital : </TextKey>Mariehamn
+          </TextInfo>
+        </CountryInfo>
+      </CountryCard>
+      <CountryCard>
+        <FlagImage
+          src="https://flagcdn.com/w320/ax.png"
+          alt="Flag"
+          title="Flag"
+        />
+        <CountryInfo>
+          <Link href="./country" passHref>
+            <CountryName>Åland Islands</CountryName>
+          </Link>
+          <TextInfo>
+            <TextKey>Population : </TextKey>28.875
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Region : </TextKey>Europe
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Capital : </TextKey>Mariehamn
+          </TextInfo>
+        </CountryInfo>
+      </CountryCard>
+      <CountryCard>
+        <FlagImage
+          src="https://flagcdn.com/w320/ax.png"
+          alt="Flag"
+          title="Flag"
+        />
+        <CountryInfo>
+          <Link href="./country" passHref>
+            <CountryName>Åland Islands</CountryName>
+          </Link>
+          <TextInfo>
+            <TextKey>Population : </TextKey>28.875
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Region : </TextKey>Europe
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Capital : </TextKey>Mariehamn
+          </TextInfo>
+        </CountryInfo>
+      </CountryCard>
+      <CountryCard>
+        <FlagImage
+          src="https://flagcdn.com/w320/ax.png"
+          alt="Flag"
+          title="Flag"
+        />
+        <CountryInfo>
+          <Link href="./country" passHref>
+            <CountryName>Åland Islands</CountryName>
+          </Link>
+          <TextInfo>
+            <TextKey>Population : </TextKey>28.875
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Region : </TextKey>Europe
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Capital : </TextKey>Mariehamn
+          </TextInfo>
+        </CountryInfo>
+      </CountryCard>
+      <CountryCard>
+        <FlagImage
+          src="https://flagcdn.com/w320/ax.png"
+          alt="Flag"
+          title="Flag"
+        />
+        <CountryInfo>
+          <Link href="./country" passHref>
+            <CountryName>Åland Islands</CountryName>
+          </Link>
+          <TextInfo>
+            <TextKey>Population : </TextKey>28.875
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Region : </TextKey>Europe
+          </TextInfo>
+          <TextInfo>
+            <TextKey>Capital : </TextKey>Mariehamn
+          </TextInfo>
+        </CountryInfo>
+      </CountryCard>
+      <CountryCard>
+        <FlagImage
+          src="https://flagcdn.com/w320/ax.png"
+          alt="Flag"
+          title="Flag"
+        />
+        <CountryInfo>
+          <Link href="./country" passHref>
             <CountryName>Åland Islands</CountryName>
           </Link>
           <TextInfo>

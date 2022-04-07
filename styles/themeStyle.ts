@@ -19,6 +19,6 @@ export const darkMode: DefaultTheme = {
   ...global,
   backgroundColor: 'hsl(207, 26%, 17%)',
   elementColor: 'hsl(209, 23%, 22%)',
-  textColor: 'hsl(0, 0%, 100%)',
+  textColor: 'hsl(0, 0%, 90%)',
   textPlaceHolder: 'hsl(180, 0%, 80%)',
 };

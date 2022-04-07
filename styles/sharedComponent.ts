@@ -11,7 +11,7 @@ export const Wrapper = css`
 // Component
 export const MainBox = styled.main`
   ${Wrapper}
-  margin-bottom: 3.4rem;
+  margin-bottom: 2rem;
 
   /* Desktop */
   @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
@@ -36,6 +36,21 @@ export const FilterSection = styled.section`
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
+    }
+  }
+`;
+
+export const TabHeader = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin-bottom: 2rem;
+
+  /* Desktop */
+  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+    & {
+      margin-bottom: 2.8rem;
     }
   }
 `;
