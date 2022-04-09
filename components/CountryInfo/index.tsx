@@ -9,6 +9,25 @@ import CountryBorder from '../CountryBorder';
 import { useFetchCountry } from '../../hooks/useFetchCountry';
 
 // Styled
+const ErrorLoadingSection = styled.section`
+  width: 100%;
+  min-height: 45vh;
+  display: grid;
+  place-items: center;
+`;
+const ErrorLoadingText = styled.p`
+  text-align: center;
+  font-size: 14px;
+  color: ${(props) => props.theme.textPlaceHolder};
+
+  /* Desktop */
+  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+    & {
+      font-size: 16px;
+    }
+  }
+`;
+
 const CountryInfoSection = styled.section`
   display: grid;
   grid-template-columns: 1fr;
@@ -95,11 +114,19 @@ const CountryInfo = () => {
 
   const { data: country, error } = useFetchCountry('alpha3code', alphacode);
 
-  if (!country) return <p>Loading</p>;
+  if (!country)
+    return (
+      <ErrorLoadingSection aria-label="Loading Countries..">
+        <ErrorLoadingText>Loading ... </ErrorLoadingText>
+      </ErrorLoadingSection>
+    );
 
-  if (error) return <p>There is Error</p>;
-
-  console.log(country);
+  if (error)
+    return (
+      <ErrorLoadingSection role="alert" aria-label="Failed to load Countries">
+        <ErrorLoadingText>Something went wrong</ErrorLoadingText>
+      </ErrorLoadingSection>
+    );
 
   return (
     <CountryInfoSection aria-label="Country Information">
