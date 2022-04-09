@@ -1,6 +1,14 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
+import useSWR from 'swr';
+
+import { getCountryByAlphaCode } from '../../utils/Fetcher/FetcherCountries';
+import { objectToStringCommas } from '../../utils/FormatText/ObjectToStringCommas';
+import { numberWithCommas } from '../../utils/FormatText/NumberWithCommas';
+import { arrayToStringCommas } from '../../utils/FormatText/ArrayToStringCommas';
+import CountryBorder from '../CountryBorder';
 
 // Styled
 const CountryInfoSection = styled.section`
@@ -21,6 +29,8 @@ const FlagImage = styled.img`
   width: 100%;
   object-fit: cover;
   object-position: center;
+
+  box-shadow: ${(props) => props.theme.smallShadow};
 `;
 
 const InfoArticle = styled.article`
@@ -80,65 +90,82 @@ const InfoProps = styled.b`
   font-weight: 700;
 `;
 
-const BorderItemSpan = styled.a`
-  display: inline-block;
-  margin: 0.3rem 0;
-  margin-right: 0.4rem;
-  padding: 0.1em 0.8em;
-  border: 1px solid blue;
-  border: 5px;
-  font-weight: 600;
-  font-size: 0.9em;
-  color: ${(props) => props.theme.textPlaceHolder};
-  background-color: ${(props) => props.theme.elementColor};
-  box-shadow: ${(props) => props.theme.smallShadow};
-  transition: all 0.2s ease-in-out;
-
-  &:nth-child(2) {
-    margin-left: 0.8rem;
-  }
-`;
+type countryType = {
+  name: string;
+  borders: string[];
+  nativeName: string;
+  flags: {
+    png: string;
+  };
+  population: number;
+  region: string;
+  subregion: string;
+  capital: string;
+  topLevelDomain: string[];
+  languages: { name: string }[];
+  currencies: { name: string }[];
+};
 
 // Component
 const CountryInfo = () => {
+  const router = useRouter();
+  const { alphacode } = router.query;
+
+  const { data: country, error } = useSWR<countryType>(
+    alphacode ? `https://restcountries.com/v2/alpha/${alphacode}` : null,
+    getCountryByAlphaCode
+  );
+
+  if (!country) return <p>Loading</p>;
+
+  if (error) return <p>There is Error</p>;
+
   return (
     <CountryInfoSection aria-label="Country Information">
       <FlagImage
-        src="https://flagcdn.com/w320/ax.png"
-        alt="Flag"
-        title="Flag"
+        src={country.flags.png}
+        alt={`Flag of ${country.name}`}
+        title={`Flag of ${country.name}`}
       />
       <InfoArticle>
-        <NameCountryHeading>Åland Islands</NameCountryHeading>
+        <NameCountryHeading>{country.name}</NameCountryHeading>
 
         <WrapperInfo>
           <InfoItem>
             <InfoText>
-              <InfoProps>Native Name: </InfoProps>Åland
+              <InfoProps>Native Name: </InfoProps>
+              {country.nativeName}
             </InfoText>
             <InfoText>
-              <InfoProps>Population: </InfoProps>28875
+              <InfoProps>Population: </InfoProps>
+              {numberWithCommas(country.population)}
             </InfoText>
             <InfoText>
-              <InfoProps>Region: </InfoProps>Europe
+              <InfoProps>Region: </InfoProps>
+              {country.region}
             </InfoText>
             <InfoText>
-              <InfoProps>Sub Region: </InfoProps>Northern Europe
+              <InfoProps>Sub Region: </InfoProps>
+              {country.subregion ? country.subregion : '-'}
             </InfoText>
             <InfoText>
-              <InfoProps>Capital: </InfoProps>Mariehamn
+              <InfoProps>Capital: </InfoProps>
+              {country.capital ? country.capital : '-'}
             </InfoText>
           </InfoItem>
 
           <InfoItem>
             <InfoText>
-              <InfoProps>Top Level Domain: </InfoProps>.ax ,
+              <InfoProps>Top Level Domain: </InfoProps>
+              {arrayToStringCommas(country.topLevelDomain)}
             </InfoText>
             <InfoText>
-              <InfoProps>Currencies: </InfoProps>Euro
+              <InfoProps>Currencies: </InfoProps>
+              {objectToStringCommas(country.currencies)}
             </InfoText>
             <InfoText>
-              <InfoProps>Languages: </InfoProps>Swedish
+              <InfoProps>Languages: </InfoProps>
+              {objectToStringCommas(country.languages)}
             </InfoText>
           </InfoItem>
         </WrapperInfo>
@@ -146,15 +173,11 @@ const CountryInfo = () => {
         <WrapperBorderCountry>
           <InfoText>
             <InfoProps>Border Countries: </InfoProps>
-            <Link href="#" passHref>
-              <BorderItemSpan>French</BorderItemSpan>
-            </Link>
-            <Link href="#" passHref>
-              <BorderItemSpan>Germany</BorderItemSpan>
-            </Link>
-            <Link href="#" passHref>
-              <BorderItemSpan>Netherland</BorderItemSpan>
-            </Link>
+            {country.borders ? (
+              <CountryBorder borders={country.borders} />
+            ) : (
+              ' -'
+            )}
           </InfoText>
         </WrapperBorderCountry>
       </InfoArticle>

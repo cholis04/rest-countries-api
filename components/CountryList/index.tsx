@@ -1,7 +1,10 @@
+import React from 'react';
 import Link from 'next/link';
-import React, { useState } from 'react';
-
+import useSWR from 'swr';
 import styled from 'styled-components';
+
+import { getAllCountries } from '../../utils/Fetcher/FetcherCountries';
+import { numberWithCommas } from '../../utils/FormatText/NumberWithCommas';
 
 // styled
 const ErrorLoadingSection = styled.section`
@@ -26,9 +29,16 @@ const ErrorLoadingText = styled.p`
 const CountryListSection = styled.section`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
+  grid-template-columns: 1fr;
   gap: 3rem;
   place-content: center;
+
+  /* Desktop */
+  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+    & {
+      grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
+    }
+  }
 `;
 
 const CountryCard = styled.div`
@@ -43,9 +53,19 @@ const CountryCard = styled.div`
 
 const FlagImage = styled.img`
   width: 100%;
-  max-height: 180px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   object-position: center;
+  border-bottom: 1px dotted ${(props) => props.theme.textPlaceHolder};
+  transition: all 0.2s ease-in;
+
+  /* Desktop */
+  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+    & {
+      object-fit: scale-down;
+      height: 180px;
+    }
+  }
 `;
 
 const CountryInfo = styled.div`
@@ -80,223 +100,71 @@ const CountryName = styled.a`
   }
 `;
 
+type countryType = {
+  name: string;
+  population: number;
+  flags: {
+    png: string;
+  };
+  region: string;
+  capital: string;
+  alpha3Code: string;
+};
+
 // Component
 const CountryList = () => {
-  const [error, setError] = useState<null | 'Fail Load' | 'Not Found'>(null);
-  const [loading, setLoading] = useState(false);
+  const { data, error } = useSWR<countryType[]>(
+    'https://restcountries.com/v2/all',
+    getAllCountries
+  );
 
-  if (loading)
+  if (!data)
     return (
       <ErrorLoadingSection aria-label="Loading Countries..">
         <ErrorLoadingText>Loading ... </ErrorLoadingText>
       </ErrorLoadingSection>
     );
 
-  if (error === 'Fail Load')
+  if (error)
     return (
       <ErrorLoadingSection role="alert" aria-label="Failed to load Countries">
         <ErrorLoadingText>Something went wrong</ErrorLoadingText>
       </ErrorLoadingSection>
     );
 
-  if (error === 'Not Found')
-    return (
-      <ErrorLoadingSection role="alert" aria-label="Country not found">
-        <ErrorLoadingText>Country Not Found</ErrorLoadingText>
-      </ErrorLoadingSection>
-    );
-
   return (
     <CountryListSection aria-label="List of Countries">
-      <CountryCard>
-        <FlagImage
-          src="https://flagcdn.com/w320/ax.png"
-          alt="Flag"
-          title="Flag"
-        />
-        <CountryInfo>
-          <Link href="./country" passHref>
-            <CountryName>Åland Islands</CountryName>
-          </Link>
-          <TextInfo>
-            <TextKey>Population : </TextKey>28.875
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Region : </TextKey>Europe
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Capital : </TextKey>Mariehamn
-          </TextInfo>
-        </CountryInfo>
-      </CountryCard>
-      <CountryCard>
-        <FlagImage
-          src="https://flagcdn.com/w320/ax.png"
-          alt="Flag"
-          title="Flag"
-        />
-        <CountryInfo>
-          <Link href="./country" passHref>
-            <CountryName>Åland Islands</CountryName>
-          </Link>
-          <TextInfo>
-            <TextKey>Population : </TextKey>28.875
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Region : </TextKey>Europe
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Capital : </TextKey>Mariehamn
-          </TextInfo>
-        </CountryInfo>
-      </CountryCard>
-      <CountryCard>
-        <FlagImage
-          src="https://flagcdn.com/w320/ax.png"
-          alt="Flag"
-          title="Flag"
-        />
-        <CountryInfo>
-          <Link href="./country" passHref>
-            <CountryName>Åland Islands</CountryName>
-          </Link>
-          <TextInfo>
-            <TextKey>Population : </TextKey>28.875
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Region : </TextKey>Europe
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Capital : </TextKey>Mariehamn
-          </TextInfo>
-        </CountryInfo>
-      </CountryCard>
-      <CountryCard>
-        <FlagImage
-          src="https://flagcdn.com/w320/ax.png"
-          alt="Flag"
-          title="Flag"
-        />
-        <CountryInfo>
-          <Link href="./country" passHref>
-            <CountryName>Åland Islands</CountryName>
-          </Link>
-          <TextInfo>
-            <TextKey>Population : </TextKey>28.875
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Region : </TextKey>Europe
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Capital : </TextKey>Mariehamn
-          </TextInfo>
-        </CountryInfo>
-      </CountryCard>
-      <CountryCard>
-        <FlagImage
-          src="https://flagcdn.com/w320/ax.png"
-          alt="Flag"
-          title="Flag"
-        />
-        <CountryInfo>
-          <Link href="./country" passHref>
-            <CountryName>Åland Islands</CountryName>
-          </Link>
-          <TextInfo>
-            <TextKey>Population : </TextKey>28.875
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Region : </TextKey>Europe
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Capital : </TextKey>Mariehamn
-          </TextInfo>
-        </CountryInfo>
-      </CountryCard>
-      <CountryCard>
-        <FlagImage
-          src="https://flagcdn.com/w320/ax.png"
-          alt="Flag"
-          title="Flag"
-        />
-        <CountryInfo>
-          <Link href="./country" passHref>
-            <CountryName>Åland Islands</CountryName>
-          </Link>
-          <TextInfo>
-            <TextKey>Population : </TextKey>28.875
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Region : </TextKey>Europe
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Capital : </TextKey>Mariehamn
-          </TextInfo>
-        </CountryInfo>
-      </CountryCard>
-      <CountryCard>
-        <FlagImage
-          src="https://flagcdn.com/w320/ax.png"
-          alt="Flag"
-          title="Flag"
-        />
-        <CountryInfo>
-          <Link href="./country" passHref>
-            <CountryName>Åland Islands</CountryName>
-          </Link>
-          <TextInfo>
-            <TextKey>Population : </TextKey>28.875
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Region : </TextKey>Europe
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Capital : </TextKey>Mariehamn
-          </TextInfo>
-        </CountryInfo>
-      </CountryCard>
-      <CountryCard>
-        <FlagImage
-          src="https://flagcdn.com/w320/ax.png"
-          alt="Flag"
-          title="Flag"
-        />
-        <CountryInfo>
-          <Link href="./country" passHref>
-            <CountryName>Åland Islands</CountryName>
-          </Link>
-          <TextInfo>
-            <TextKey>Population : </TextKey>28.875
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Region : </TextKey>Europe
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Capital : </TextKey>Mariehamn
-          </TextInfo>
-        </CountryInfo>
-      </CountryCard>
-      <CountryCard>
-        <FlagImage
-          src="https://flagcdn.com/w320/ax.png"
-          alt="Flag"
-          title="Flag"
-        />
-        <CountryInfo>
-          <Link href="./country" passHref>
-            <CountryName>Åland Islands</CountryName>
-          </Link>
-          <TextInfo>
-            <TextKey>Population : </TextKey>28.875
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Region : </TextKey>Europe
-          </TextInfo>
-          <TextInfo>
-            <TextKey>Capital : </TextKey>Mariehamn
-          </TextInfo>
-        </CountryInfo>
-      </CountryCard>
+      {data.map((country) => {
+        return (
+          <CountryCard key={country.name}>
+            <FlagImage
+              src={country.flags.png}
+              alt={`Flag of ${country.name}`}
+              title={`Flag of ${country.name}`}
+            />
+            <CountryInfo>
+              <Link
+                href={`country/${country.alpha3Code.toLowerCase()}`}
+                passHref
+              >
+                <CountryName>{country.name}</CountryName>
+              </Link>
+              <TextInfo>
+                <TextKey>Population : </TextKey>
+                {numberWithCommas(country.population)}
+              </TextInfo>
+              <TextInfo>
+                <TextKey>Region : </TextKey>
+                {country.region}
+              </TextInfo>
+              <TextInfo>
+                <TextKey>Capital : </TextKey>
+                {country.capital}
+              </TextInfo>
+            </CountryInfo>
+          </CountryCard>
+        );
+      })}
     </CountryListSection>
   );
 };

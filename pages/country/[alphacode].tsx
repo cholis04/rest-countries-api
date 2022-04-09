@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import BackButton from '../components/BackButton';
-import CountryInfo from '../components/CountryInfo';
-import HomeLink from '../components/HomeLink';
-import { MainBox, TabHeader } from '../styles/sharedComponent';
+import BackButton from '../../components/BackButton';
+import CountryInfo from '../../components/CountryInfo';
+import HomeLink from '../../components/HomeLink';
+import { MainBox, TabHeader } from '../../styles/sharedComponent';
 
 const CountryPage: NextPage = () => {
   return (
