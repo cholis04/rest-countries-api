@@ -91,6 +91,11 @@ const InfoText = styled.p`
     }
   }
 `;
+
+const EmptyBorder = styled.span`
+  color: ${(props) => props.theme.textValue};
+`;
+
 const InfoBorder = styled.div`
   font-size: 0.9em;
   color: ${(props) => props.theme.textColor};
@@ -131,14 +136,14 @@ const CountryInfo = () => {
   if (!country)
     return (
       <ErrorLoadingSection aria-label="Loading Countries..">
-        <ErrorLoadingText>Loading ... </ErrorLoadingText>
+        <ErrorLoadingText>Loading... </ErrorLoadingText>
       </ErrorLoadingSection>
     );
 
   if (error)
     return (
       <ErrorLoadingSection role="alert" aria-label="Failed to load Countries">
-        <ErrorLoadingText>Something went wrong</ErrorLoadingText>
+        <ErrorLoadingText>An error occurred</ErrorLoadingText>
       </ErrorLoadingSection>
     );
 
@@ -204,7 +209,7 @@ const CountryInfo = () => {
             {country.borders.length >= 1 ? (
               <CountryBorder borders={country.borders} />
             ) : (
-              ' -'
+              <EmptyBorder> -</EmptyBorder>
             )}
           </InfoBorder>
         </WrapperBorderCountry>

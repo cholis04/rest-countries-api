@@ -23,6 +23,10 @@ const BorderItemSpan = styled.a`
   }
 `;
 
+const EmptyBorder = styled.span`
+  color: ${(props) => props.theme.textValue};
+`;
+
 type props = {
   borders: string[];
 };
@@ -30,9 +34,9 @@ type props = {
 const CountryBorder: React.FC<props> = ({ borders }) => {
   const { data, error } = useFetchCountries();
 
-  if (!data) return <p>Loading</p>;
+  if (!data) return <EmptyBorder>Loading...</EmptyBorder>;
 
-  if (error) return <p>There is Error</p>;
+  if (error) return <EmptyBorder>An error occurred</EmptyBorder>;
 
   return (
     <>

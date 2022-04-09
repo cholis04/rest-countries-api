@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+
+import { Filter } from '../../context/FilterContext';
 
 // style
 const FormGroupFilter = styled.form`
@@ -62,15 +64,19 @@ const ResetFilterButton = styled.input`
 `;
 
 // Component
-const FilterForm = () => {
-  const [region, setRegion] = useState<null | string>(null);
+const FilterForm: React.FC = () => {
+  const filter = useContext(Filter);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setRegion(e.target.value);
+    if (filter.setRegion) {
+      filter.setRegion(e.target.value);
+    }
   };
 
   const handleReset = () => {
-    setRegion(null);
+    if (filter.setRegion) {
+      filter.setRegion('');
+    }
   };
 
   return (
@@ -80,6 +86,7 @@ const FilterForm = () => {
         id="region"
         aria-label="Filter by Region"
         onChange={handleChange}
+        value={filter.region}
       >
         <OptionSelect value="">Filter by Region</OptionSelect>
         <OptionSelect value="afrika">Afrika</OptionSelect>
@@ -88,7 +95,7 @@ const FilterForm = () => {
         <OptionSelect value="europe">Europe</OptionSelect>
         <OptionSelect value="ocenia">Ocenia</OptionSelect>
       </SelectBox>
-      {region && (
+      {filter.region && (
         <ResetFilterButton
           type="reset"
           value="Reset Filter"

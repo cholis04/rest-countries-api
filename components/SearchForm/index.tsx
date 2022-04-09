@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import styled from 'styled-components';
+
+import { Filter } from '../../context/FilterContext';
 
 // Styled
 const FormGroupSearch = styled.form`
@@ -50,7 +52,15 @@ const InputSearch = styled.input`
 `;
 
 // Component
-const SearchForm = () => {
+const SearchForm: React.FC = () => {
+  const filter = useContext(Filter);
+
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    if (filter.setKeyword) {
+      filter.setKeyword(e.currentTarget.value);
+    }
+  };
+
   return (
     <FormGroupSearch name="search-form">
       <InputGroup>
@@ -59,8 +69,10 @@ const SearchForm = () => {
           id="country"
           name="country"
           type="search"
+          defaultValue={filter.keyword}
           aria-label="Name of Country"
           placeholder="Search for country..."
+          onChange={handleChange}
         />
       </InputGroup>
     </FormGroupSearch>
