@@ -1,14 +1,12 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
-import useSWR from 'swr';
 
-import { getCountryByAlphaCode } from '../../utils/Fetcher/FetcherCountries';
 import { objectToStringCommas } from '../../utils/FormatText/ObjectToStringCommas';
 import { numberWithCommas } from '../../utils/FormatText/NumberWithCommas';
 import { arrayToStringCommas } from '../../utils/FormatText/ArrayToStringCommas';
 import CountryBorder from '../CountryBorder';
+import { useFetchCountry } from '../../hooks/useFetchCountry';
 
 // Styled
 const CountryInfoSection = styled.section`
@@ -90,35 +88,18 @@ const InfoProps = styled.b`
   font-weight: 700;
 `;
 
-type countryType = {
-  name: string;
-  borders: string[];
-  nativeName: string;
-  flags: {
-    png: string;
-  };
-  population: number;
-  region: string;
-  subregion: string;
-  capital: string;
-  topLevelDomain: string[];
-  languages: { name: string }[];
-  currencies: { name: string }[];
-};
-
 // Component
 const CountryInfo = () => {
   const router = useRouter();
   const { alphacode } = router.query;
 
-  const { data: country, error } = useSWR<countryType>(
-    alphacode ? `https://restcountries.com/v2/alpha/${alphacode}` : null,
-    getCountryByAlphaCode
-  );
+  const { data: country, error } = useFetchCountry('alpha3code', alphacode);
 
   if (!country) return <p>Loading</p>;
 
   if (error) return <p>There is Error</p>;
+
+  console.log(country);
 
   return (
     <CountryInfoSection aria-label="Country Information">
@@ -142,7 +123,7 @@ const CountryInfo = () => {
             </InfoText>
             <InfoText>
               <InfoProps>Region: </InfoProps>
-              {country.region}
+              {country.region ? country.region : '-'}
             </InfoText>
             <InfoText>
               <InfoProps>Sub Region: </InfoProps>
@@ -157,15 +138,21 @@ const CountryInfo = () => {
           <InfoItem>
             <InfoText>
               <InfoProps>Top Level Domain: </InfoProps>
-              {arrayToStringCommas(country.topLevelDomain)}
+              {country.topLevelDomain
+                ? arrayToStringCommas(country.topLevelDomain)
+                : ' -'}
             </InfoText>
             <InfoText>
               <InfoProps>Currencies: </InfoProps>
-              {objectToStringCommas(country.currencies)}
+              {country.currencies
+                ? objectToStringCommas(country.currencies)
+                : ' -'}
             </InfoText>
             <InfoText>
               <InfoProps>Languages: </InfoProps>
-              {objectToStringCommas(country.languages)}
+              {country.languages
+                ? objectToStringCommas(country.languages)
+                : ' -'}
             </InfoText>
           </InfoItem>
         </WrapperInfo>

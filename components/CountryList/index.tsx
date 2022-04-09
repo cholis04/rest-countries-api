@@ -1,10 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import useSWR from 'swr';
 import styled from 'styled-components';
 
-import { getAllCountries } from '../../utils/Fetcher/FetcherCountries';
 import { numberWithCommas } from '../../utils/FormatText/NumberWithCommas';
+import { useFetchCountries } from '../../hooks/useFetchCountries';
 
 // styled
 const ErrorLoadingSection = styled.section`
@@ -100,23 +99,9 @@ const CountryName = styled.a`
   }
 `;
 
-type countryType = {
-  name: string;
-  population: number;
-  flags: {
-    png: string;
-  };
-  region: string;
-  capital: string;
-  alpha3Code: string;
-};
-
 // Component
 const CountryList = () => {
-  const { data, error } = useSWR<countryType[]>(
-    'https://restcountries.com/v2/all',
-    getAllCountries
-  );
+  const { data, error } = useFetchCountries();
 
   if (!data)
     return (
@@ -155,11 +140,11 @@ const CountryList = () => {
               </TextInfo>
               <TextInfo>
                 <TextKey>Region : </TextKey>
-                {country.region}
+                {country.region ? country.region : '-'}
               </TextInfo>
               <TextInfo>
                 <TextKey>Capital : </TextKey>
-                {country.capital}
+                {country.capital ? country.capital : '-'}
               </TextInfo>
             </CountryInfo>
           </CountryCard>

@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
-import useSWR from 'swr';
-import { getAllCountries } from '../../utils/Fetcher/FetcherCountries';
+
+import { useFetchCountries } from '../../hooks/useFetchCountries';
 
 const BorderItemSpan = styled.a`
   display: inline-block;
@@ -27,16 +27,8 @@ type props = {
   borders: string[];
 };
 
-type countryType = {
-  name: string;
-  alpha3Code: string;
-};
-
 const CountryBorder: React.FC<props> = ({ borders }) => {
-  const { data, error } = useSWR<countryType[]>(
-    'https://restcountries.com/v2/all',
-    getAllCountries
-  );
+  const { data, error } = useFetchCountries();
 
   if (!data) return <p>Loading</p>;
 
