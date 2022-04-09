@@ -80,6 +80,19 @@ const InfoItem = styled.div`
 
 const InfoText = styled.p`
   font-size: 0.9em;
+  color: ${(props) => props.theme.textValue};
+  line-height: 2em;
+  font-weight: 400;
+
+  /* Desktop */
+  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+    & {
+      font-size: 1em;
+    }
+  }
+`;
+const InfoBorder = styled.div`
+  font-size: 0.9em;
   color: ${(props) => props.theme.textColor};
   line-height: 2em;
   font-weight: 400;
@@ -105,6 +118,7 @@ const WrapperBorderCountry = styled.div`
 
 const InfoProps = styled.b`
   font-weight: 700;
+  color: ${(props) => props.theme.textColor};
 `;
 
 // Component
@@ -185,14 +199,14 @@ const CountryInfo = () => {
         </WrapperInfo>
 
         <WrapperBorderCountry>
-          <InfoText>
+          <InfoBorder>
             <InfoProps>Border Countries: </InfoProps>
-            {country.borders ? (
+            {country.borders.length >= 1 ? (
               <CountryBorder borders={country.borders} />
             ) : (
               ' -'
             )}
-          </InfoText>
+          </InfoBorder>
         </WrapperBorderCountry>
       </InfoArticle>
     </CountryInfoSection>

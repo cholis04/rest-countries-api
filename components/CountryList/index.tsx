@@ -75,11 +75,12 @@ const CountryInfo = styled.div`
 const TextInfo = styled.p`
   line-height: 2em;
   font-weight: 400;
-  color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.textValue};
 `;
 
 const TextKey = styled.b`
   font-weight: 700;
+  color: ${(props) => props.theme.textColor};
 `;
 
 const CountryName = styled.a`
