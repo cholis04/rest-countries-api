@@ -73,13 +73,13 @@ const Navbar: React.FC = () => {
         <ToggleMode onClick={mode?.toggleMode} title="Toggle Dark/Light Mode">
           {mode?.isDarkMode ? (
             <>
-              <BsSunFill />
-              <ToggleText>Light Mode</ToggleText>
+              <BsMoon />
+              <ToggleText>Dark Mode</ToggleText>
             </>
           ) : (
             <>
-              <BsMoon />
-              <ToggleText>Dark Mode</ToggleText>
+              <BsSunFill />
+              <ToggleText>Light Mode</ToggleText>
             </>
           )}
         </ToggleMode>

@@ -21,7 +21,7 @@ const FlagImage = styled.img`
   height: auto;
   object-fit: contain;
   object-position: center;
-  border-bottom: 1px dotted ${(props) => props.theme.textPlaceHolder};
+  border-bottom: 1px solid ${(props) => props.theme.textPlaceHolder};
   transition: all 0.2s ease-in;
 
   /* Desktop */
