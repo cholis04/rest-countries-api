@@ -32,7 +32,9 @@ const CountryList: React.FC = () => {
   if (error)
     return (
       <ErrorLoadingSection role="alert" aria-label="Failed to load Countries">
-        <ErrorLoadingText>An error occurred</ErrorLoadingText>
+        <ErrorLoadingText>
+          Sorry, looks like something went wrong.
+        </ErrorLoadingText>
       </ErrorLoadingSection>
     );
 

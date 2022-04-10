@@ -136,7 +136,9 @@ const CountryInfo: React.FC = () => {
   if (error)
     return (
       <ErrorLoadingSection role="alert" aria-label="Failed to load Countries">
-        <ErrorLoadingText>An error occurred</ErrorLoadingText>
+        <ErrorLoadingText>
+          {error.name === 400 ? 'Country not found' : error.message}
+        </ErrorLoadingText>
       </ErrorLoadingSection>
     );
 
