@@ -27,11 +27,11 @@ const EmptyBorder = styled.span`
   color: ${(props) => props.theme.textValue};
 `;
 
-type props = {
+type Props = {
   borders: string[];
 };
 
-const CountryBorder: React.FC<props> = ({ borders }) => {
+const CountryBorder: React.FC<Props> = ({ borders }) => {
   const { data, error } = useFetchCountries();
 
   if (!data) return <EmptyBorder>Loading...</EmptyBorder>;

@@ -21,7 +21,7 @@ const LinkAttribute = styled.a`
   color: ${(props) => props.theme.textColor};
 `;
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <FooterStyled>
       <AttributionDiv>

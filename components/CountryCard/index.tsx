@@ -67,7 +67,7 @@ const CountryName = styled.a`
 `;
 
 // types
-type props = {
+type Props = {
   countries: {
     alpha3Code: string;
     capital: string;
@@ -81,7 +81,7 @@ type props = {
 };
 
 // Component
-const CountryCard: React.FC<props> = ({ countries }) => {
+const CountryCard: React.FC<Props> = ({ countries }) => {
   const filter = useContext(Filter);
 
   return (

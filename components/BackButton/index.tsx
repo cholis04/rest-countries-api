@@ -26,7 +26,7 @@ const BackButtonStyled = styled.button`
   }
 `;
 
-const BackButton = () => {
+const BackButton: React.FC = () => {
   const router = useRouter();
 
   return (

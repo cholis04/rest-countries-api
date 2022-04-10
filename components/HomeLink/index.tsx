@@ -25,7 +25,7 @@ const StyledLink = styled.a`
   }
 `;
 
-const HomeLink = () => {
+const HomeLink: React.FC = () => {
   return (
     <Link href="/" passHref>
       <StyledLink>All Countries ↗</StyledLink>

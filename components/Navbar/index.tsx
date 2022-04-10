@@ -63,7 +63,7 @@ const ToggleText = styled.span`
   margin-left: 0.3rem;
 `;
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const mode = useContext(Mode);
 
   return (

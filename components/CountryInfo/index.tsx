@@ -127,7 +127,7 @@ const InfoProps = styled.b`
 `;
 
 // Component
-const CountryInfo = () => {
+const CountryInfo: React.FC = () => {
   const router = useRouter();
   const { alphacode } = router.query;
 
