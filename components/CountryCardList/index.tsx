@@ -102,17 +102,16 @@ const CountryName = styled.a`
 
 // types
 type Props = {
-  countries:
-    | {
-        alpha3Code: string;
-        capital: string;
-        flags: {
-          png: string;
-        };
-        name: string;
-        population: number;
-        region: string;
-      }[];
+  countries: {
+    alpha3Code: string;
+    capital: string;
+    flags: {
+      png: string;
+    };
+    name: string;
+    population: number;
+    region: string;
+  }[];
 };
 
 // Component

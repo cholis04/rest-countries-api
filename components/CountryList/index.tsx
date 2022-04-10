@@ -28,19 +28,19 @@ const ErrorLoadingText = styled.p`
 const CountryList: React.FC = () => {
   const { data: countries, error } = useFetchCountries();
 
-  // Loading
-  if (!countries)
-    return (
-      <ErrorLoadingSection aria-label="Loading Countries..">
-        <ErrorLoadingText>Loading... </ErrorLoadingText>
-      </ErrorLoadingSection>
-    );
-
   // Error
   if (error)
     return (
       <ErrorLoadingSection role="alert" aria-label="Failed to load Countries">
         <ErrorLoadingText>An error occurred</ErrorLoadingText>
+      </ErrorLoadingSection>
+    );
+
+  // Loading
+  if (!countries)
+    return (
+      <ErrorLoadingSection aria-label="Loading Countries..">
+        <ErrorLoadingText>Loading... </ErrorLoadingText>
       </ErrorLoadingSection>
     );
 

@@ -133,17 +133,17 @@ const CountryInfo: React.FC = () => {
 
   const { data: country, error } = useFetchCountry('alpha3code', alphacode);
 
-  if (!country)
-    return (
-      <ErrorLoadingSection aria-label="Loading Countries..">
-        <ErrorLoadingText>Loading... </ErrorLoadingText>
-      </ErrorLoadingSection>
-    );
-
   if (error)
     return (
       <ErrorLoadingSection role="alert" aria-label="Failed to load Countries">
         <ErrorLoadingText>An error occurred</ErrorLoadingText>
+      </ErrorLoadingSection>
+    );
+
+  if (!country)
+    return (
+      <ErrorLoadingSection aria-label="Loading Countries..">
+        <ErrorLoadingText>Loading... </ErrorLoadingText>
       </ErrorLoadingSection>
     );
 
