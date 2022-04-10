@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import CountryCardList from '../CountryCardList';
 import { useFetchCountries } from '../../hooks/useFetchCountries';
-import CountryCard from '../CountryCard';
 
 // styled
 const ErrorLoadingSection = styled.section`
@@ -24,25 +24,11 @@ const ErrorLoadingText = styled.p`
   }
 `;
 
-const CountryListSection = styled.section`
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-  place-content: center;
-
-  /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
-    & {
-      grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
-    }
-  }
-`;
-
 // Component
 const CountryList: React.FC = () => {
   const { data: countries, error } = useFetchCountries();
 
+  // Loading
   if (!countries)
     return (
       <ErrorLoadingSection aria-label="Loading Countries..">
@@ -50,6 +36,7 @@ const CountryList: React.FC = () => {
       </ErrorLoadingSection>
     );
 
+  // Error
   if (error)
     return (
       <ErrorLoadingSection role="alert" aria-label="Failed to load Countries">
@@ -57,11 +44,7 @@ const CountryList: React.FC = () => {
       </ErrorLoadingSection>
     );
 
-  return (
-    <CountryListSection aria-label="List of Countries">
-      <CountryCard countries={countries} />
-    </CountryListSection>
-  );
+  return <CountryCardList countries={countries} />;
 };
 
 export default CountryList;

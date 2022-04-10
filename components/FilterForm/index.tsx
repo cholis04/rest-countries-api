@@ -89,11 +89,11 @@ const FilterForm: React.FC = () => {
         value={filter.region}
       >
         <OptionSelect value="">Filter by Region</OptionSelect>
-        <OptionSelect value="afrika">Afrika</OptionSelect>
-        <OptionSelect value="america">America</OptionSelect>
+        <OptionSelect value="africa">Africa</OptionSelect>
+        <OptionSelect value="americas">Americas</OptionSelect>
         <OptionSelect value="asia">Asia</OptionSelect>
         <OptionSelect value="europe">Europe</OptionSelect>
-        <OptionSelect value="ocenia">Ocenia</OptionSelect>
+        <OptionSelect value="oceania">Oceania</OptionSelect>
       </SelectBox>
       {filter.region && (
         <ResetFilterButton
