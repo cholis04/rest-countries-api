@@ -57,7 +57,8 @@ const SearchForm: React.FC = () => {
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     if (filter.setKeyword) {
-      filter.setKeyword(e.currentTarget.value);
+      const value = e.currentTarget.value;
+      filter.setKeyword(value);
     }
   };
 

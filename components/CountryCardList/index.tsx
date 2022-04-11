@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { numberWithCommas } from '../../utils/FormatText/NumberWithCommas';
 import { Filter } from '../../context/FilterContext';
+import MarkText from '../MarkText';
 
 // Styled Components
 const ErrorLoadingSection = styled.section`
@@ -173,7 +174,9 @@ const CountryCardList: React.FC<Props> = ({ countries }) => {
                   href={`country/${country.alpha3Code.toLowerCase()}`}
                   passHref
                 >
-                  <CountryName>{country.name}</CountryName>
+                  <CountryName>
+                    <MarkText keyword={keyword} text={country.name} />
+                  </CountryName>
                 </Link>
                 <TextInfo>
                   <TextKey>Population : </TextKey>
