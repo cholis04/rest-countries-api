@@ -5,7 +5,6 @@ import Navbar from '../components/Navbar';
 
 const MainLayout: React.FC = ({ children }) => {
   const theme = useTheme();
-  console.log(theme);
   return (
     <>
       <Head>

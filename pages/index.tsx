@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import CountryList from '../components/CountryList';
 import FilterForm from '../components/FilterForm';
+import ScrollToTop from '../components/ScrollToTop';
 import SearchForm from '../components/SearchForm';
 import { FilterSection, MainBox } from '../styles/sharedComponent';
 
@@ -21,6 +22,8 @@ const Home: NextPage = () => {
         </FilterSection>
         <CountryList />
       </MainBox>
+
+      <ScrollToTop />
     </>
   );
 };
