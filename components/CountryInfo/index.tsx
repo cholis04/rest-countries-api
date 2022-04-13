@@ -18,10 +18,11 @@ const ErrorLoadingSection = styled.section`
 const ErrorLoadingText = styled.p`
   text-align: center;
   font-size: 14px;
-  color: ${(props) => props.theme.textPlaceHolder};
+  color: var(--textPlaceHolder);
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       font-size: 16px;
     }
@@ -34,7 +35,8 @@ const CountryInfoSection = styled.section`
   gap: 3rem;
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
@@ -55,12 +57,13 @@ const InfoArticle = styled.article`
 `;
 
 const NameCountryHeading = styled.h2`
-  color: ${(props) => props.theme.textColor};
+  color: var(--textColor);
   font-size: 1.6em;
   font-weight: 800;
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       font-size: 2em;
     }
@@ -80,12 +83,13 @@ const InfoItem = styled.div`
 
 const InfoText = styled.p`
   font-size: 0.9em;
-  color: ${(props) => props.theme.textValue};
+  color: var(--textValue);
   line-height: 2em;
   font-weight: 400;
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       font-size: 1em;
     }
@@ -93,17 +97,18 @@ const InfoText = styled.p`
 `;
 
 const EmptyBorder = styled.span`
-  color: ${(props) => props.theme.textValue};
+  color: var(--textValue);
 `;
 
 const InfoBorder = styled.div`
   font-size: 0.9em;
-  color: ${(props) => props.theme.textColor};
+  color: var(--textColor);
   line-height: 2em;
   font-weight: 400;
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       font-size: 1em;
     }
@@ -114,7 +119,8 @@ const WrapperBorderCountry = styled.div`
   margin-top: 1rem;
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       margin-top: 3rem;
     }
@@ -123,7 +129,7 @@ const WrapperBorderCountry = styled.div`
 
 const InfoProps = styled.b`
   font-weight: 700;
-  color: ${(props) => props.theme.textColor};
+  color: var(--textColor);
 `;
 
 // Component

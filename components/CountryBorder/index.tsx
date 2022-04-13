@@ -13,8 +13,8 @@ const BorderItemSpan = styled.a`
   border: 5px;
   font-weight: 600;
   font-size: 0.9em;
-  color: ${(props) => props.theme.textPlaceHolder};
-  background-color: ${(props) => props.theme.elementColor};
+  color: var(--textPlaceHolder);
+  background-color: var(--elementColor);
   box-shadow: ${(props) => props.theme.smallShadow};
   transition: all 0.2s ease-in-out;
 
@@ -24,7 +24,7 @@ const BorderItemSpan = styled.a`
 `;
 
 const EmptyBorder = styled.span`
-  color: ${(props) => props.theme.textValue};
+  color: var(--textValue);
 `;
 
 type Props = {

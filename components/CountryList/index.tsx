@@ -14,10 +14,11 @@ const ErrorLoadingSection = styled.section`
 const ErrorLoadingText = styled.p`
   text-align: center;
   font-size: 14px;
-  color: ${(props) => props.theme.textPlaceHolder};
+  color: var(--textPlaceHolder);
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       font-size: 16px;
     }

@@ -16,10 +16,11 @@ const ErrorLoadingSection = styled.section`
 const ErrorLoadingText = styled.p`
   text-align: center;
   font-size: 14px;
-  color: ${(props) => props.theme.textPlaceHolder};
+  color: var(--textPlaceHolder);
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       font-size: 16px;
     }
@@ -34,7 +35,8 @@ const CountryListSection = styled.section`
   place-content: center;
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
     }
@@ -45,8 +47,8 @@ const CountryCardDiv = styled.div`
   font-size: 14px;
   border-radius: 5px;
   overflow: hidden;
-  background-color: ${(props) => props.theme.elementColor};
-  color: ${(props) => props.theme.textColor};
+  background-color: var(--elementColor);
+  color: var(--textColor);
   box-shadow: ${(props) => props.theme.smallShadow};
   transition: all 0.2s ease-in-out;
 `;
@@ -56,11 +58,12 @@ const FlagImage = styled.img`
   height: auto;
   object-fit: contain;
   object-position: center;
-  border-bottom: 1px solid ${(props) => props.theme.textPlaceHolder};
+  border-bottom: 1px solid var(--textPlaceHolder);
   transition: all 0.2s ease-in;
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       object-fit: scale-down;
       height: 180px;
@@ -76,12 +79,12 @@ const CountryInfo = styled.div`
 const TextInfo = styled.p`
   line-height: 2em;
   font-weight: 400;
-  color: ${(props) => props.theme.textValue};
+  color: var(--textValue);
 `;
 
 const TextKey = styled.b`
   font-weight: 700;
-  color: ${(props) => props.theme.textColor};
+  color: var(--textColor);
 `;
 
 const CountryName = styled.a`
@@ -90,7 +93,7 @@ const CountryName = styled.a`
   font-size: 1.4em;
   line-height: 2em;
   margin-bottom: 0.4rem;
-  color: ${(props) => props.theme.textColor};
+  color: var(--textColor);
 
   &:hover {
     text-decoration: underline;

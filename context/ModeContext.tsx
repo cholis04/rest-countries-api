@@ -1,54 +1,55 @@
 import { createContext, useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { darkMode, lightMode } from '../styles/themeStyle';
+import { global } from '../styles/themeStyle';
 
 interface ModeProps {
-  isDarkMode: boolean;
+  isDarkMode: boolean | null;
   toggleMode: () => void;
 }
 
 export const Mode = createContext<ModeProps | null>(null);
 
 const ModeProvider: React.FC = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState<null | boolean>(null);
 
-  const theme = isDarkMode ? darkMode : lightMode;
+  // const theme = isDarkMode ? darkMode : lightMode;
 
-  const switchMode = (localTheme: string) => {
-    switch (localTheme) {
-      case 'dark':
-        setIsDarkMode(true);
-        break;
-      case 'light':
-        setIsDarkMode(false);
-        break;
-      default:
-        setIsDarkMode(false);
-        break;
+  const toggleMode = () => {
+    const androidTC = document.querySelector('meta[name="theme-color"]');
+    const iosTC = document.querySelector(
+      'meta[name="apple-mobile-web-app-status-bar-style"]'
+    );
+
+    // Set meta theme color!!
+    if (isDarkMode) {
+      setIsDarkMode(false);
+      document.body.removeAttribute('data-theme');
+      localStorage.setItem('theme-mode', 'light');
+      androidTC?.setAttribute('content', 'hsl(0, 0%, 98%)');
+      iosTC?.setAttribute('content', 'hsl(0, 0%, 98%)');
+    } else {
+      setIsDarkMode(true);
+      document.body.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme-mode', 'dark');
+      androidTC?.setAttribute('content', 'hsl(207, 26%, 17%)');
+      iosTC?.setAttribute('content', 'hsl(207, 26%, 17%)');
     }
   };
 
-  const toggleMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  // Check local storage theme
+  // Initialize Thgeme mode
   useEffect(() => {
-    const localTheme = localStorage.getItem('themeMode');
-    if (localTheme) {
-      switchMode(localTheme);
+    const local = localStorage.getItem('theme-mode');
+    if (local === 'dark') {
+      setIsDarkMode(true);
+    } else {
+      setIsDarkMode(false);
     }
   }, []);
 
-  // Update Localstorage when state changed
-  useEffect(() => {
-    localStorage.setItem('themeMode', isDarkMode ? 'dark' : 'light');
-  }, [isDarkMode]);
-
   return (
     <Mode.Provider value={{ isDarkMode, toggleMode }}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={global}>{children}</ThemeProvider>
     </Mode.Provider>
   );
 };

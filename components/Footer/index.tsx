@@ -6,19 +6,19 @@ const FooterStyled = styled.footer`
   padding: 2rem 0;
   margin: 0 auto;
   width: 100%;
-  max-width: ${(props) => props.theme.maxWidth};
+  max-width: var(--maxWidth);
 `;
 
 const AttributionDiv = styled.div`
   font-size: 12px;
   text-align: center;
-  color: ${(props) => props.theme.textColor};
+  color: var(--textColor);
 `;
 
 const LinkAttribute = styled.a`
   text-decoration: underline;
   font-weight: 600;
-  color: ${(props) => props.theme.textColor};
+  color: var(--textColor);
 `;
 
 const Footer: React.FC = () => {

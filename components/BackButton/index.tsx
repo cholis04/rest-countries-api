@@ -12,14 +12,15 @@ const BackButtonStyled = styled.button`
   font-weight: 600;
   border-radius: 5px;
   border: none;
-  color: ${(props) => props.theme.textPlaceHolder};
-  background-color: ${(props) => props.theme.elementColor};
+  color: var(--textPlaceHolder);
+  background-color: var(--elementColor);
   box-shadow: ${(props) => props.theme.smallShadow};
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       font-size: 1em;
     }

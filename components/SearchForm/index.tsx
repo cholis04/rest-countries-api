@@ -9,13 +9,14 @@ const FormGroupSearch = styled.form`
   padding-left: 1.4em;
   width: 100%;
   max-width: 480px;
-  background-color: ${(props) => props.theme.elementColor};
+  background-color: var(--elementColor);
   border-radius: 5px;
   box-shadow: ${(props) => props.theme.smallShadow};
   transition: all 0.2s ease-in-out;
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       padding-left: 1.8em;
     }
@@ -26,10 +27,11 @@ const InputGroup = styled.div`
   display: flex;
   align-items: center;
   font-size: 0.8em;
-  color: ${(props) => props.theme.textColor};
+  color: var(--textColor);
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       font-size: 0.9em;
     }
@@ -47,7 +49,7 @@ const InputSearch = styled.input`
   color: inherit;
 
   &::placeholder {
-    color: ${(props) => props.theme.textPlaceHolder};
+    color: var(--textPlaceHolder);
   }
 `;
 

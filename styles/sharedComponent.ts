@@ -5,7 +5,7 @@ export const Wrapper = css`
   margin: 0 auto;
   padding: 1.4em;
   width: 100%;
-  max-width: ${(props) => props.theme.maxWidth};
+  max-width: var(--maxWidth);
 `;
 
 // Component
@@ -14,7 +14,8 @@ export const MainBox = styled.main`
   margin-bottom: 2rem;
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       margin-top: 1rem;
     }
@@ -30,7 +31,8 @@ export const FilterSection = styled.section`
   margin-bottom: 2rem;
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       margin-bottom: 2.8rem;
       flex-direction: row;
@@ -48,7 +50,8 @@ export const TabHeader = styled.div`
   margin-bottom: 2rem;
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       margin-bottom: 2.8rem;
     }

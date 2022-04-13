@@ -16,7 +16,7 @@ const ButtonScoll = styled.button`
   border-radius: 50px;
   background: none;
   border: none;
-  color: ${(props) => props.theme.textPlaceHolder};
+  color: var(--textPlaceHolder);
   font-size: 2em;
   cursor: pointer;
   transition: all 0.2s ease-in-out;

@@ -6,7 +6,7 @@ import { Mode } from '../../context/ModeContext';
 import { Wrapper } from '../../styles/sharedComponent';
 
 const NavHeader = styled.header`
-  background-color: ${(props) => props.theme.elementColor};
+  background-color: var(--elementColor);
   box-shadow: ${(props) => props.theme.smallShadow};
   transition: all 0.2s ease-in-out;
 `;
@@ -23,10 +23,11 @@ const WrapperNav = styled.div`
 const TitleWeb = styled.h1`
   font-weight: 800;
   font-size: 1.2em;
-  color: ${(props) => props.theme.textColor};
+  color: var(--textColor);
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       font-size: 1.5em;
     }
@@ -37,7 +38,7 @@ const ToggleMode = styled.button`
   border: none;
   border-bottom: 1px solid transparent;
   background: none;
-  color: ${(props) => props.theme.textColor};
+  color: var(--textColor);
   font-size: 0.9em;
   font-weight: 700;
   display: flex;
@@ -47,12 +48,13 @@ const ToggleMode = styled.button`
   /* On Hover Desktop */
   @media (hover: hover) {
     &:hover {
-      border-bottom: 1px solid ${(props) => props.theme.textColor};
+      border-bottom: 1px solid var(--textColor);
     }
   }
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       font-size: 1em;
     }
@@ -63,6 +65,10 @@ const ToggleText = styled.span`
   margin-left: 0.3rem;
 `;
 
+const LoadingToggleSpan = styled.span`
+  color: var(--textColor);
+`;
+
 const Navbar: React.FC = () => {
   const mode = useContext(Mode);
 
@@ -70,19 +76,24 @@ const Navbar: React.FC = () => {
     <NavHeader>
       <WrapperNav>
         <TitleWeb>Where in the world?</TitleWeb>
-        <ToggleMode onClick={mode?.toggleMode} title="Toggle Dark/Light Mode">
-          {mode?.isDarkMode ? (
-            <>
-              <BsMoon />
-              <ToggleText>Dark Mode</ToggleText>
-            </>
-          ) : (
-            <>
-              <BsSunFill />
-              <ToggleText>Light Mode</ToggleText>
-            </>
-          )}
-        </ToggleMode>
+
+        {mode?.isDarkMode !== null ? (
+          <ToggleMode onClick={mode?.toggleMode} title="Toggle Dark/Light Mode">
+            {mode?.isDarkMode ? (
+              <>
+                <BsMoon />
+                <ToggleText>Dark Mode</ToggleText>
+              </>
+            ) : (
+              <>
+                <BsSunFill />
+                <ToggleText>Light Mode</ToggleText>
+              </>
+            )}
+          </ToggleMode>
+        ) : (
+          <LoadingToggleSpan>Loading...</LoadingToggleSpan>
+        )}
       </WrapperNav>
     </NavHeader>
   );

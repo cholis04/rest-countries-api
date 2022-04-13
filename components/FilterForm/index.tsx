@@ -11,7 +11,8 @@ const FormGroupFilter = styled.form`
   align-items: center;
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       margin-left: 2rem;
       margin-top: 0rem;
@@ -21,8 +22,8 @@ const FormGroupFilter = styled.form`
 
 const SelectBox = styled.select`
   position: relative;
-  background-color: ${(props) => props.theme.elementColor};
-  color: ${(props) => props.theme.textColor};
+  background-color: var(--elementColor);
+  color: var(--textColor);
   font-size: 0.8em;
   font-weight: 500;
   padding: 1em 1.8em;
@@ -32,7 +33,8 @@ const SelectBox = styled.select`
   transition: all 0.2s ease-in-out;
 
   /* Desktop */
-  @media only screen and (min-width: ${(props) => props.theme.screenDesktop}) {
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
     & {
       font-size: 0.9em;
     }

@@ -2,6 +2,34 @@ import { createGlobalStyle } from 'styled-components';
 
 // Global Style
 export const GlobalStyle = createGlobalStyle`
+  :root {
+    /* Global */
+    --smallShadow: ${(props) => props.theme.smallShadow};
+    --maxWidth:${(props) => props.theme.maxWidth};
+    --minWidth:${(props) => props.theme.minWidth};
+    /* Global */
+
+    /* Default Light */
+    --backgroundColor: ${(props) => props.theme.light.backgroundColor};
+    --elementColor:${(props) => props.theme.light.elementColor};
+    --textColor: ${(props) => props.theme.light.textColor};
+    --textValue: ${(props) => props.theme.light.textValue};
+    --textPlaceHolder: ${(props) => props.theme.light.textPlaceHolder};
+    /* Default Light */
+  }
+  
+  /* Default System Detect */
+  /* @media (prefers-color-scheme: dark) {} */
+
+  /* [data-theme='dark']:root { */
+    /* Dark */
+    /* --backgroundColor: ${(props) => props.theme.dark.backgroundColor};
+    --elementColor:${(props) => props.theme.dark.elementColor};
+    --textColor: ${(props) => props.theme.dark.textColor};
+    --textValue: ${(props) => props.theme.dark.textValue};
+    --textPlaceHolder: ${(props) => props.theme.dark.textPlaceHolder}; */
+    /* Dark */
+  /* } */
 
   *,
   *::after,
@@ -11,13 +39,25 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
+
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: 'Nunito Sans', sans-serif;
-    background-color:${(props) => props.theme.backgroundColor};
+    background-color:var(--backgroundColor);
     transition:all .2s ease-in-out;
-    min-width:${(props) => props.theme.minWidth};
+    min-width: var(--minWidth);
+  }
+
+  body[data-theme='dark'] {
+
+    --backgroundColor: ${(props) => props.theme.dark.backgroundColor};
+    --elementColor:${(props) => props.theme.dark.elementColor};
+    --textColor: ${(props) => props.theme.dark.textColor};
+    --textValue: ${(props) => props.theme.dark.textValue};
+    --textPlaceHolder: ${(props) => props.theme.dark.textPlaceHolder};
+
+    background-color:var(--backgroundColor);
   }
   img {
     display: block;

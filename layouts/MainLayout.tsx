@@ -1,22 +1,16 @@
-import Head from 'next/head';
-import { useTheme } from 'styled-components';
+import Script from 'next/script';
+
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 
 const MainLayout: React.FC = ({ children }) => {
-  const theme = useTheme();
   return (
     <>
-      <Head>
-        <meta name="theme-color" content={theme.backgroundColor} />
-        <meta
-          name="apple-mobile-web-app-status-bar-style"
-          content={theme.backgroundColor}
-        />
-      </Head>
       <Navbar />
       {children}
       <Footer />
+
+      <Script src="/darkModeConfig.js" strategy="beforeInteractive" />
     </>
   );
 };
