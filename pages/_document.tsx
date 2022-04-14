@@ -6,8 +6,9 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document';
-
 import { ServerStyleSheet } from 'styled-components';
+
+import { blockingSetInitialColorMode } from '../helper/setInitialColorMode';
 
 export default class MyDocument extends Document {
   static async getInitialProps(
@@ -55,6 +56,11 @@ export default class MyDocument extends Document {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: blockingSetInitialColorMode,
+            }}
+          ></script>
           <Main />
           <NextScript />
         </body>

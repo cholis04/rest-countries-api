@@ -1,4 +1,5 @@
-(function () {
+// Function Set Initial Color Mode
+function setInitialColorMode() {
   var body = document.body;
   var head = document.head;
 
@@ -17,12 +18,18 @@
 
     // Set attr body
     body.setAttribute('data-theme', 'dark');
+
+    // set localstorage
+    localStorage.setItem('theme-mode', 'dark');
   }
 
   function setLight() {
     // Theme Address Bar Color Change
     androidTC.setAttribute('content', 'hsl(0, 0%, 98%)');
     iosTC.setAttribute('content', 'hsl(0, 0%, 98%)');
+
+    // set localstorage
+    localStorage.setItem('theme-mode', 'light');
   }
 
   if (localTheme === 'dark') {
@@ -42,4 +49,11 @@
 
   head.appendChild(androidTC);
   head.appendChild(iosTC);
-})();
+}
+
+// our function needs to be a string
+export const blockingSetInitialColorMode = `(function() {
+    ${setInitialColorMode.toString()}
+    setInitialColorMode();
+  })()
+  `;
