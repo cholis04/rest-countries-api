@@ -38,10 +38,10 @@ Users should be able to:
 
 ### Screenshot
 
-Homepage - (Light)
+Homepage - (Light Mode)
 ![Homepage Light Mode](./screenshots/SSFEM-Rest_Coutries_API-1.png)
 
-Detail Country Page - (Dark)
+Detail Country Page - (Dark Mode)
 ![Detail Country Page Dark Mode](./screenshots/SSFEM-Rest_Coutries_API-2.png)
 
 ### Link
@@ -69,7 +69,9 @@ This project is very interesting. I learned new things that can be applied to co
 
 #### Input Type Search
 
-Usually I will use `input` Tag with **text** type. But HTML has another type which is **search**. In this type, it will display an empty button (x) when we type something in it.
+Usually I will use `input` Tag with **text** type. But HTML has another type which is **search**. In this type, some web browsers will display an empty button (x) when we type something in it.
+
+![Input Type Search](./screenshots/Input_Type_Search.jpg)
 
 ```html
 <input
@@ -82,6 +84,8 @@ Usually I will use `input` Tag with **text** type. But HTML has another type whi
 ```
 
 #### Object Fit Scale Down
+
+![Object fit Scale Down](./screenshots/Object_fit-Scale-Down.png)
 
 Displaying an Image in a container that has a fixed size is quite a tricky thing. Given also we need to adjust to the width of the screen to be responsive.
 
@@ -128,6 +132,8 @@ if (window.matchMedia('(prefers-color-scheme)').media !== 'not all') {
 
 #### Commas as Thousands Separators
 
+![commas as Thousands Separatos](./screenshots/Commas_as_Thousands_Separators.png)
+
 Returns numbers separated by commas. It can also help the user to know quickly what the number will be if the value is very large.
 
 ```js
@@ -138,71 +144,65 @@ const numberWithCommas = (x: number) => {
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+In order to test my skills and adapt to the provided design, I think I need to add some features to this project to make it more relevant.
 
 #### Reset Region Filter Button
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+![Reset Region Filter Button](./screenshots/Reset_Filter_Button.png)
 
-To see how you can add code snippets, see below:
+I'm trying to make it look exactly the same as the available design. The select box is a unique part.
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
+Before the user selects a region, the text shown is a label i.e., **filter by region**. However, when the user chooses, the label text is not included in the selection. This is very interesting.
 
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉');
-};
-```
+So, I applied it to the code. And lets me add a **Reset Button** if the user wants to cancel the filter.
 
 #### Highlight Search Keywords
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
-
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+![Highlight Search Keywords](./screenshots/Highlight_Search_Keyword.png)
+I've also added a highlight for keywords that match the name of the country being searched for. By using a function from JavaScript, namely `.replace()`.
 
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉');
+const MarkText = ({ text, keyword }) => {
+  if (keyword !== '') {
+    const splitterText = '___{$#(!VMV!)#$}___';
+    const regExpKeyword = new RegExp(keyword, 'gi');
+
+    // Replacement with string
+    const replace = text.replaceAll(
+      regExpKeyword,
+      `${splitterText}$&${splitterText}`
+    );
+
+    const split = replace.split(splitterText);
+
+    return (
+      <>
+        {split.map((word, index) => {
+          if (word.toLowerCase() === keyword.toLowerCase())
+            return <mark key={index}>{word}</mark>;
+          return word;
+        })}
+      </>
+    );
+  }
+  return <>{text}</>;
 };
 ```
 
 #### Scroll Up Button
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+![Scroll to Top](./screenshots/Scroll_to_Top.png)
 
-To see how you can add code snippets, see below:
+I didn't create a navbar with a fixed position on top. So when a user has reached the bottom of the page and they want to change a keyword or filter by a region, the user needs to go to the top of the page manually.
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+Therefore, I created a button that when the user presses the button, they will be directly directed to the top of the page. I think this is also often seen on the web and other blogs.
 
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉');
+const handleClick = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
 };
 ```
 
