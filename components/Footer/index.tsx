@@ -45,18 +45,7 @@ const Footer: React.FC = () => {
             target="_blank"
             rel="noreferrer"
           >
-            cholis04
-          </LinkAttribute>
-          .
-        </ParagraphAttribute>
-        <ParagraphAttribute>
-          Country Data from{' '}
-          <LinkAttribute
-            href="https://restcountries.com/#api-endpoints-v2"
-            target="_blank"
-            rel="noreferrer"
-          >
-            REST Countries V2 API
+            Cholis04
           </LinkAttribute>
           .
         </ParagraphAttribute>
