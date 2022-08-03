@@ -49,19 +49,27 @@ const OptionSelect = styled.option`
 `;
 
 const ResetFilterButton = styled.input`
-  background-color: #f90716;
+  background-color: #ff0011;
   border: none;
   color: white;
   margin-left: 1rem;
   font-size: 0.8em;
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 5px;
-  padding: 0.6em 1.2em;
+  padding: 1em 1.8em;
   cursor: pointer;
   transition: all 0.2s ease-in;
 
-  &:hover {
-    box-shadow: ${(props) => props.theme.smallShadow};
+  /* Desktop */
+  @media only screen and (min-width: ${(props) =>
+      props.theme.media.screenDesktop}) {
+    & {
+      font-size: 0.9em;
+    }
+
+    &:hover {
+      box-shadow: ${(props) => props.theme.smallShadow};
+    }
   }
 `;
 
